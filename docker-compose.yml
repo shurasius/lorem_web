@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+ qrcode_generator:
+   image: shurasius/qrcode_generator:latest
+   ports:
+     - "8000:8000"
+ lorem_web:
+   build: .
+   environment:
+     QR_HOST: qrcode_generator:8000
+     API_HOST: randomtext.me
+   ports:
+     - "8080:8080"
